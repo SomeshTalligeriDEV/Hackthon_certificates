@@ -1,13 +1,12 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SOMESH S. TALLIGERI | Shadow Monarch Developer - Level ∞</title>
+  <title>Somesh S. Talligeri | Hackathon Achievements</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
-    
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;500;700&display=swap');
+
     * {
       margin: 0;
       padding: 0;
@@ -15,721 +14,155 @@
     }
 
     body {
-      font-family: 'Rajdhani', sans-serif;
-      background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+      font-family: 'Inter', sans-serif;
+      background-color: #0f0f0f;
       color: #ffffff;
-      overflow-x: hidden;
-      position: relative;
-      min-height: 100vh;
-    }
-
-    /* Animated Shadow Particles */
-    .shadow-particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: linear-gradient(45deg, #9b59b6, #8e44ad);
-      border-radius: 50%;
-      animation: float 6s ease-in-out infinite;
-      box-shadow: 0 0 10px rgba(155, 89, 182, 0.5);
-    }
-
-    .particle:nth-child(odd) {
-      background: linear-gradient(45deg, #00ff88, #00cc66);
-      box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-      animation-delay: -2s;
-    }
-
-    .particle:nth-child(3n) {
-      background: linear-gradient(45deg, #ff6b6b, #ee5a52);
-      box-shadow: 0 0 10px rgba(255, 107, 107, 0.5);
-      animation-delay: -4s;
-    }
-
-    .particle:nth-child(4n) {
-      background: linear-gradient(45deg, #ffd700, #ffcc00);
-      box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-      animation-delay: -1s;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
-      50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
-    }
-
-    /* Level Up Notification */
-    .level-up-notification {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      background: linear-gradient(45deg, #ffd700, #ffcc00);
-      color: #000;
-      padding: 20px 40px;
-      border-radius: 15px;
-      font-family: 'Orbitron', monospace;
-      font-weight: 900;
-      font-size: 1.5rem;
-      z-index: 1000;
-      box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
-      animation: levelUpPulse 3s ease-in-out;
-    }
-
-    @keyframes levelUpPulse {
-      0% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-      15% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
-      85% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-      100% { transform: translate(-50%, -50%) scale(0); opacity: 0; }
-    }
-
-    /* Header Section - Shadow Monarch Style */
-    .header {
-      text-align: center;
-      padding: 80px 20px 60px;
-      position: relative;
-      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.5));
-      border-bottom: 2px solid rgba(155, 89, 182, 0.3);
-    }
-
-    .rank-badge {
-      display: inline-block;
-      background: linear-gradient(45deg, #9b59b6, #8e44ad);
-      color: #fff;
-      padding: 8px 20px;
-      border-radius: 25px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 20px rgba(155, 89, 182, 0.4);
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      from { box-shadow: 0 0 20px rgba(155, 89, 182, 0.4); }
-      to { box-shadow: 0 0 30px rgba(155, 89, 182, 0.8); }
-    }
-
-    .main-title {
-      font-family: 'Orbitron', monospace;
-      font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 900;
-      background: linear-gradient(45deg, #ffffff, #9b59b6, #00ff88);
-      background-size: 200% 200%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: gradientShift 3s ease-in-out infinite;
-      margin-bottom: 10px;
-      text-shadow: 0 0 30px rgba(155, 89, 182, 0.5);
-    }
-
-    @keyframes gradientShift {
-      0%, 100% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-    }
-
-    .subtitle {
-      font-size: 1.4rem;
-      color: #bbb;
-      font-weight: 300;
-      letter-spacing: 2px;
-      margin-bottom: 30px;
-    }
-
-    /* Level System */
-    .level-system {
-      max-width: 600px;
-      margin: 0 auto 30px;
       padding: 20px;
-      background: rgba(155, 89, 182, 0.1);
-      border-radius: 15px;
-      border: 2px solid rgba(155, 89, 182, 0.3);
     }
 
-    .level-info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 15px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .current-level {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.8rem;
-      color: #ffd700;
-      font-weight: 700;
-      text-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-    }
-
-    .exp-info {
-      color: #00ff88;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .level-bar {
-      width: 100%;
-      height: 12px;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 6px;
-      overflow: hidden;
-      border: 1px solid rgba(155, 89, 182, 0.3);
-    }
-
-    .level-progress {
-      height: 100%;
-      background: linear-gradient(45deg, #00ff88, #00cc66, #ffd700);
-      width: 95%;
-      border-radius: 6px;
-      animation: progressGlow 2s ease-in-out infinite alternate;
-      position: relative;
-    }
-
-    .level-progress::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      animation: progressShine 2s linear infinite;
-    }
-
-    @keyframes progressGlow {
-      from { box-shadow: 0 0 10px rgba(0, 255, 136, 0.3); }
-      to { box-shadow: 0 0 20px rgba(0, 255, 136, 0.6); }
-    }
-
-    @keyframes progressShine {
-      0% { transform: translateX(-100%); }
-      100% { transform: translateX(100%); }
-    }
-
-    .power-level {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.1rem;
-      color: #00ff88;
-      font-weight: 600;
-      text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-      margin-top: 15px;
-    }
-
-    /* Digital Card Section */
-    .digital-card-section {
+    h1 {
       text-align: center;
-      margin: 40px 0;
-      padding: 30px;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 20px;
-      border: 1px solid rgba(155, 89, 182, 0.2);
+      margin-bottom: 40px;
+      font-size: 2.5rem;
+      color: #00ffc8;
     }
 
-    .connect-btn {
-      display: inline-block;
-      background: linear-gradient(45deg, #00ff88, #00cc66);
-      color: #000;
-      padding: 15px 35px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-family: 'Orbitron', monospace;
-      font-weight: 700;
-      font-size: 1.1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      box-shadow: 0 5px 20px rgba(0, 255, 136, 0.3);
-      animation: connectPulse 2s ease-in-out infinite;
-    }
-
-    .connect-btn:hover {
-      background: linear-gradient(45deg, #00cc66, #00ff88);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(0, 255, 136, 0.5);
-    }
-
-    @keyframes connectPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    /* Achievement Cards - Hunter Guild Style */
-    .achievements-container {
-      padding: 60px 40px;
-      max-width: 1400px;
+    .certificates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
-    .section-title {
-      text-align: center;
-      font-family: 'Orbitron', monospace;
-      font-size: 2.2rem;
-      color: #9b59b6;
-      margin-bottom: 50px;
-      position: relative;
-    }
-
-    .section-title::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 3px;
-      background: linear-gradient(45deg, #9b59b6, #00ff88);
-      border-radius: 2px;
-    }
-
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 30px;
-      animation: fadeInUp 1s ease-out;
-    }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .achievement-card {
-      background: linear-gradient(145deg, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.9));
-      border: 2px solid rgba(155, 89, 182, 0.3);
-      border-radius: 20px;
+    .card {
+      background-color: #1a1a1a;
+      border-radius: 12px;
       overflow: hidden;
-      position: relative;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      backdrop-filter: blur(10px);
-    }
-
-    .achievement-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(155, 89, 182, 0.1), transparent);
-      transition: left 0.6s;
-    }
-
-    .achievement-card:hover::before {
-      left: 100%;
-    }
-
-    .achievement-card:hover {
-      transform: translateY(-15px) scale(1.02);
-      border-color: rgba(155, 89, 182, 0.8);
-      box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.3),
-        0 0 30px rgba(155, 89, 182, 0.4);
-    }
-
-    .card-image {
-      position: relative;
-      overflow: hidden;
-      height: 250px;
-    }
-
-    .card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-      filter: brightness(0.8) contrast(1.1);
-    }
-
-    .achievement-card:hover .card-image img {
-      transform: scale(1.1);
-      filter: brightness(1) contrast(1.2);
-    }
-
-    .rank-overlay {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      background: linear-gradient(45deg, #ff6b6b, #ee5a52);
-      color: white;
-      padding: 5px 12px;
-      border-radius: 15px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
-    }
-
-    .exp-gained {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      background: linear-gradient(45deg, #ffd700, #ffcc00);
-      color: #000;
-      padding: 5px 12px;
-      border-radius: 15px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      font-family: 'Orbitron', monospace;
-      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
-    }
-
-    .card-content {
-      padding: 25px;
-      text-align: center;
-    }
-
-    .achievement-title {
-      font-family: 'Orbitron', monospace;
-      font-size: 1.3rem;
-      color: #ffffff;
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
-
-    .achievement-level {
-      color: #ffd700;
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 15px;
-    }
-
-    .achievement-desc {
-      color: #bbb;
-      font-size: 0.95rem;
-      line-height: 1.4;
-      margin-bottom: 20px;
-    }
-
-    .view-certificate {
-      display: inline-block;
-      background: linear-gradient(45deg, #9b59b6, #8e44ad);
-      color: white;
-      padding: 12px 25px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
-    }
-
-    .view-certificate:hover {
-      background: linear-gradient(45deg, #8e44ad, #9b59b6);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(155, 89, 182, 0.5);
-    }
-
-    /* Stats Section */
-    .stats-section {
-      background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.6));
-      padding: 60px 40px;
-      text-align: center;
-      border-top: 2px solid rgba(155, 89, 182, 0.3);
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .stat-item {
-      padding: 20px;
-      background: rgba(155, 89, 182, 0.1);
-      border-radius: 15px;
-      border: 1px solid rgba(155, 89, 182, 0.3);
+      box-shadow: 0 4px 15px rgba(0, 255, 200, 0.1);
       transition: transform 0.3s ease;
     }
 
-    .stat-item:hover {
-      transform: scale(1.05);
-      background: rgba(155, 89, 182, 0.2);
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 25px rgba(0, 255, 200, 0.2);
     }
 
-    .stat-number {
-      font-family: 'Orbitron', monospace;
-      font-size: 2.5rem;
-      color: #00ff88;
-      font-weight: 700;
-      text-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
     }
 
-    .stat-label {
-      color: #bbb;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-top: 5px;
+    .card-body {
+      padding: 15px;
     }
 
-    /* Footer */
-    .footer {
+    .card-title {
+      font-size: 1.2rem;
+      color: #00ffc8;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 0.95rem;
+      color: #ccc;
+      margin-bottom: 10px;
+    }
+
+    .view-btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #00ffc8;
+      color: #000;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .view-btn:hover {
+      background: #00e0b0;
+    }
+
+    footer {
+      margin-top: 50px;
       text-align: center;
-      padding: 40px 20px;
-      background: rgba(0, 0, 0, 0.9);
-      color: #666;
       font-size: 0.9rem;
-    }
-
-    .footer-text {
-      font-family: 'Orbitron', monospace;
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-      .header { padding: 60px 20px 40px; }
-      .achievements-container { padding: 40px 20px; }
-      .cards-grid { grid-template-columns: 1fr; gap: 20px; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-      .level-info { flex-direction: column; text-align: center; }
+      color: #777;
     }
   </style>
 </head>
 <body>
-  <!-- Level Up Notification -->
-  <div class="level-up-notification" id="levelUpNotification">
-    🎉 LEVEL UP! 🎉
+  <h1>Hackathon & Certification Showcase</h1>
+  <div class="certificates-grid">
+    <div class="card">
+      <img src="bmsitcodered.jpg" alt="BMSIT CodeRed Certificate">
+      <div class="card-body">
+        <div class="card-title">BMSIT CodeRed</div>
+        <div class="card-desc">Participated and achieved top rank at BMSIT CodeRed Hackathon.</div>
+        <a class="view-btn" href="bmsitcodered.jpg" target="_blank">View Certificate</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="buildwithindia.jpg" alt="Build with India">
+      <div class="card-body">
+        <div class="card-title">Build with India</div>
+        <div class="card-desc">Contributed to innovative solutions for India's tech advancement.</div>
+        <a class="view-btn" href="buildwithindia.jpg" target="_blank">View Certificate</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="ggitshackthon.jpg" alt="GGITS Hackathon">
+      <div class="card-body">
+        <div class="card-title">GGITS Hackathon</div>
+        <div class="card-desc">Secured winning position in GGITS National Hackathon event.</div>
+        <a class="view-btn" href="ggitshackthon.jpg" target="_blank">View Certificate</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="metadome.jpg" alt="Metadome AR/VR Hackathon">
+      <div class="card-body">
+        <div class="card-title">Metadome AR/VR</div>
+        <div class="card-desc">Pioneered immersive tech at Metadome’s AR/VR innovation sprint.</div>
+        <a class="view-btn" href="metadome.jpg" target="_blank">View Certificate</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="polkadothackthonnft.jpg" alt="Polkadot NFT Hackathon">
+      <div class="card-body">
+        <div class="card-title">Polkadot NFT Hackathon</div>
+        <div class="card-desc">Blockchain-based innovation using NFTs on the Polkadot network.</div>
+        <a class="view-btn" href="polkadothackthonnft.jpg" target="_blank">View Certificate</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="samsunghackthon.jpg" alt="Samsung Innovation Hackathon">
+      <div class="card-body">
+        <div class="card-title">Samsung Innovation</div>
+        <div class="card-desc">Created tech solutions for real-world problems during Samsung Hackathon.</div>
+        <a class="view-btn" href="samsunghackthon.jpg" target="_blank">View Certificate</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="startupindiaquiz.jpg" alt="Startup India Quiz">
+      <div class="card-body">
+        <div class="card-title">Startup India Quiz</div>
+        <div class="card-desc">Tested entrepreneurial skills and startup knowledge successfully.</div>
+        <a class="view-btn" href="startupindiaquiz.jpg" target="_blank">View Certificate</a>
+      </div>
+    </div>
   </div>
 
-  <!-- Animated Shadow Particles -->
-  <div class="shadow-particles">
-    <div class="particle" style="left: 10%; top: 20%; animation-delay: 0s;"></div>
-    <div class="particle" style="left: 80%; top: 30%; animation-delay: -1s;"></div>
-    <div class="particle" style="left: 30%; top: 60%; animation-delay: -2s;"></div>
-    <div class="particle" style="left: 70%; top: 80%; animation-delay: -3s;"></div>
-    <div class="particle" style="left: 20%; top: 70%; animation-delay: -1.5s;"></div>
-    <div class="particle" style="left: 90%; top: 10%; animation-delay: -2.5s;"></div>
-    <div class="particle" style="left: 50%; top: 40%; animation-delay: -0.5s;"></div>
-    <div class="particle" style="left: 15%; top: 90%; animation-delay: -3.5s;"></div>
-    <div class="particle" style="left: 65%; top: 15%; animation-delay: -2.8s;"></div>
-    <div class="particle" style="left: 35%; top: 85%; animation-delay: -1.2s;"></div>
-  </div>
-
-  <!-- Header Section -->
-  <header class="header">
-    <div class="rank-badge">🏆 SHADOW MONARCH - S++ RANK</div>
-    <h1 class="main-title">SOMESH S. TALLIGERI</h1>
-    <p class="subtitle">Elite Hackathon Conquests & Coding Championships</p>
-    
-    <!-- Level System -->
-    <div class="level-system">
-      <div class="level-info">
-        <div class="current-level">LEVEL ∞</div>
-        <div class="exp-info">EXP: 999,999 / ∞</div>
-      </div>
-      <div class="level-bar">
-        <div class="level-progress"></div>
-      </div>
-      <div class="power-level">⚡ POWER LEVEL: MAXIMUM OVERDRIVE ⚡</div>
-    </div>
-
-    <!-- Digital Connection -->
-    <div class="digital-card-section">
-      <a href="https://hihello.me/p/073b3401-f186-418f-bfd8-77d6a1af0431" target="_blank" class="connect-btn">
-        🔗 CONNECT WITH THE LEGEND
-      </a>
-    </div>
-  </header>
-
-  <!-- Achievements Section -->
-  <section class="achievements-container">
-    <h2 class="section-title">🎯 LEGENDARY ACHIEVEMENT UNLOCKED</h2>
-    
-    <div class="cards-grid">
-      <!-- Achievement Card 1 -->
-      <div class="achievement-card">
-        <div class="card-image">
-          <img src="bmsitcodered.jpg" alt="BMSIT CodeRed Victory">
-          <div class="rank-overlay">A-RANK</div>
-          <div class="exp-gained">+5000 EXP</div>
-        </div>
-        <div class="card-content">
-          <h3 class="achievement-title">BMSIT CodeRed Conquest</h3>
-          <div class="achievement-level">🏅 Achievement Level: MASTER</div>
-          <p class="achievement-desc">Dominated the battlefield of algorithms and emerged victorious</p>
-          <a href="bmsitcodered.jpg" target="_blank" class="view-certificate">View Trophy</a>
-        </div>
-      </div>
-
-      <!-- Achievement Card 2 -->
-      <div class="achievement-card">
-        <div class="card-image">
-          <img src="buildwithindia.jpg" alt="Build with India Champion">
-          <div class="rank-overlay">S-RANK</div>
-          <div class="exp-gained">+8000 EXP</div>
-        </div>
-        <div class="card-content">
-          <h3 class="achievement-title">Build with India Champion</h3>
-          <div class="achievement-level">🏅 Achievement Level: LEGEND</div>
-          <p class="achievement-desc">Architected solutions for the nation's digital future</p>
-          <a href="buildwithindia.jpg" target="_blank" class="view-certificate">View Trophy</a>
-        </div>
-      </div>
-
-      <!-- Achievement Card 3 -->
-      <div class="achievement-card">
-        <div class="card-image">
-          <img src="ggitshackthon.jpg" alt="GGITS National Victory">
-          <div class="rank-overlay">A-RANK</div>
-          <div class="exp-gained">+6000 EXP</div>
-        </div>
-        <div class="card-content">
-          <h3 class="achievement-title">GGITS National Domination</h3>
-          <div class="achievement-level">🏅 Achievement Level: ELITE</div>
-          <p class="achievement-desc">Conquered the national stage with superior coding prowess</p>
-          <a href="ggitshackthon.jpg" target="_blank" class="view-certificate">View Trophy</a>
-        </div>
-      </div>
-
-      <!-- Achievement Card 4 -->
-      <div class="achievement-card">
-        <div class="card-image">
-          <img src="metadome.jpg" alt="Metadome AR/VR Master">
-          <div class="rank-overlay">S-RANK</div>
-          <div class="exp-gained">+9000 EXP</div>
-        </div>
-        <div class="card-content">
-          <h3 class="achievement-title">Metadome Reality Architect</h3>
-          <div class="achievement-level">🏅 Achievement Level: MYTHIC</div>
-          <p class="achievement-desc">Mastered the realms of AR/VR development</p>
-          <a href="metadome.jpg" target="_blank" class="view-certificate">View Trophy</a>
-        </div>
-      </div>
-
-      <!-- Achievement Card 5 -->
-      <div class="achievement-card">
-        <div class="card-image">
-          <img src="polkadothackthonnft.jpg" alt="Polkadot NFT Champion">
-          <div class="rank-overlay">SS-RANK</div>
-          <div class="exp-gained">+12000 EXP</div>
-        </div>
-        <div class="card-content">
-          <h3 class="achievement-title">Polkadot NFT Sovereign</h3>
-          <div class="achievement-level">🏅 Achievement Level: GODLIKE</div>
-          <p class="achievement-desc">Ruled the blockchain universe with NFT innovations</p>
-          <a href="polkadothackthonnft.jpg" target="_blank" class="view-certificate">View Trophy</a>
-        </div>
-      </div>
-
-      <!-- Achievement Card 6 -->
-      <div class="achievement-card">
-        <div class="card-image">
-          <img src="samsunghackthon.jpg" alt="Samsung Innovation Master">
-          <div class="rank-overlay">S-RANK</div>
-          <div class="exp-gained">+10000 EXP</div>
-        </div>
-        <div class="card-content">
-          <h3 class="achievement-title">Samsung Innovation Warlord</h3>
-          <div class="achievement-level">🏅 Achievement Level: SUPREME</div>
-          <p class="achievement-desc">Solved tomorrow's problems with today's genius</p>
-          <a href="samsunghackthon.jpg" target="_blank" class="view-certificate">View Trophy</a>
-        </div>
-      </div>
-
-      <!-- Achievement Card 7 -->
-      <div class="achievement-card">
-        <div class="card-image">
-          <img src="startupindiaquiz.jpg" alt="Startup India Quiz Champion">
-          <div class="rank-overlay">SSS-RANK</div>
-          <div class="exp-gained">+15000 EXP</div>
-        </div>
-        <div class="card-content">
-          <h3 class="achievement-title">Startup India Quiz Monarch</h3>
-          <div class="achievement-level">🏅 Achievement Level: TRANSCENDENT</div>
-          <p class="achievement-desc">Supreme intellect in entrepreneurial warfare</p>
-          <a href="startupindiaquiz.jpg" target="_blank" class="view-certificate">View Trophy</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Stats Section -->
-  <section class="stats-section">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-number">7</div>
-        <div class="stat-label">Legendary Victories</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">∞</div>
-        <div class="stat-label">Level Reached</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">65K+</div>
-        <div class="stat-label">Total EXP Gained</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">Success Rate</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">24/7</div>
-        <div class="stat-label">Coding Mode</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <p class="footer-text">🔥 THE SHADOW MONARCH OF CODE HAS RISEN 🔥</p>
-    <p>Built with infinite dedication and legendary skills</p>
+  <footer>
+    © Somesh S. Talligeri | Portfolio of Achievements
   </footer>
-
-  <script>
-    // Level Up Animation on Load
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const notification = document.getElementById('levelUpNotification');
-        notification.style.animation = 'levelUpPulse 3s ease-in-out';
-      }, 1000);
-    });
-
-    // Add dynamic particle generation
-    function createParticle() {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.top = Math.random() * 100 + '%';
-      particle.style.animationDelay = Math.random() * 6 + 's';
-      
-      // Random particle colors
-      const colors = [
-        'linear-gradient(45deg, #9b59b6, #8e44ad)',
-        'linear-gradient(45deg, #00ff88, #00cc66)',
-        'linear-gradient(45deg, #ff6b6b, #ee5a52)',
-        'linear-gradient(45deg, #ffd700, #ffcc00)'
-      ];
-      particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-      
-      document.querySelector('.shadow-particles').appendChild(particle);
-      
-      setTimeout(() => {
-        particle.remove();
-      }, 6000);
-    }
-
-    // Generate particles continuously
-    setInterval(createParticle, 600);
-
-    // Add scroll animations
-    window.addEventListener('scroll', () => {
-      const cards = document.querySelectorAll('.achievement-card');
-      cards.forEach((card, index) => {
-        const cardTop = card.getBoundingClientRect().top;
+</body>
+</html>

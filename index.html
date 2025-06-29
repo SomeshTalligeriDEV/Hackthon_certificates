@@ -3,181 +3,774 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Somesh's Hackathon & Quiz Certificates</title>
+  <title>Somesh.exe | Elite Hacker Portfolio</title>
   <style>
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&display=swap');
+    
+    * {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
-      color: white;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --neon-green: #00ff41;
+      --neon-blue: #00d4ff;
+      --neon-purple: #bf00ff;
+      --dark-bg: #0a0a0a;
+      --darker-bg: #050505;
+      --terminal-green: #00ff41;
+      --matrix-green: #008f11;
+      --glass-bg: rgba(0, 255, 65, 0.05);
+      --glass-border: rgba(0, 255, 65, 0.2);
+    }
+
+    body {
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--dark-bg);
+      color: var(--neon-green);
       overflow-x: hidden;
+      line-height: 1.6;
+      position: relative;
     }
 
-    h1 {
-      text-align: center;
-      margin: 50px 0 10px;
-      font-size: 2.5rem;
-      letter-spacing: 1px;
-    }
-
-    p.subtitle {
-      text-align: center;
-      color: #aaa;
-      margin-bottom: 40px;
-      font-size: 1.1rem;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      padding: 0 40px 60px;
-      animation: fadeIn 1.2s ease-in-out;
-    }
-
-    .card {
-      background-color: #ffffff10;
-      border: 1px solid #ffffff30;
-      border-radius: 15px;
-      overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: scale(1.03);
-      box-shadow: 0 8px 30px rgba(255, 255, 255, 0.15);
-    }
-
-    .card img {
+    /* Matrix rain animation background */
+    .matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: auto;
-      display: block;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .matrix-rain {
+      position: absolute;
+      animation: matrix-fall 20s linear infinite;
+      font-size: 12px;
+      color: var(--matrix-green);
+      opacity: 0.7;
+    }
+
+    @keyframes matrix-fall {
+      0% { transform: translateY(-100vh); opacity: 1; }
+      100% { transform: translateY(100vh); opacity: 0; }
+    }
+
+    /* Terminal-style header */
+    .terminal-header {
+      background: rgba(0, 0, 0, 0.9);
+      border: 1px solid var(--neon-green);
+      margin: 20px;
+      border-radius: 8px;
+      padding: 20px;
+      backdrop-filter: blur(10px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .terminal-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background: linear-gradient(90deg, #ff0000, #ff8800, #ffff00);
+      border-radius: 8px 8px 0 0;
+    }
+
+    .terminal-buttons {
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      display: flex;
+      gap: 8px;
+    }
+
+    .terminal-button {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #333;
+    }
+
+    .terminal-button.close { background: #ff5f56; }
+    .terminal-button.minimize { background: #ffbd2e; }
+    .terminal-button.maximize { background: #27ca3f; }
+
+    .terminal-content {
+      margin-top: 20px;
+    }
+
+    .command-line {
+      color: var(--neon-green);
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .prompt {
+      color: var(--neon-blue);
+    }
+
+    .cursor {
+      background: var(--neon-green);
+      animation: blink 1s infinite;
+      width: 2px;
+      height: 20px;
+      display: inline-block;
+    }
+
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .ascii-art {
+      font-size: 10px;
+      line-height: 1;
+      color: var(--neon-purple);
+      text-align: center;
+      margin: 20px 0;
+      font-weight: 300;
+    }
+
+    .status-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+      padding: 10px 0;
+      border-top: 1px solid var(--glass-border);
+      font-size: 12px;
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--neon-green);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    /* Main content area */
+    .main-content {
+      padding: 0 20px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin: 40px 0;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(45deg, var(--neon-green), var(--neon-blue), var(--neon-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(0, 255, 65, 0.5);
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      color: #888;
+      font-size: 1rem;
+      font-weight: 300;
+    }
+
+    .glitch {
+      animation: glitch 2s infinite;
+    }
+
+    @keyframes glitch {
+      0%, 100% { transform: translate(0); }
+      10% { transform: translate(-2px, 2px); }
+      20% { transform: translate(2px, -2px); }
+      30% { transform: translate(-2px, -2px); }
+      40% { transform: translate(2px, 2px); }
+      50% { transform: translate(-2px, 2px); }
+      60% { transform: translate(2px, -2px); }
+      70% { transform: translate(-2px, -2px); }
+      80% { transform: translate(2px, 2px); }
+      90% { transform: translate(-2px, 2px); }
+    }
+
+    /* Achievement grid */
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 25px;
+      margin-bottom: 60px;
+    }
+
+    .achievement-card {
+      background: var(--glass-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .achievement-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--neon-green), var(--neon-blue), var(--neon-purple));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .achievement-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      border-color: var(--neon-green);
+      box-shadow: 0 20px 40px rgba(0, 255, 65, 0.2);
+    }
+
+    .achievement-card:hover::before {
+      opacity: 1;
+    }
+
+    .card-header {
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.5);
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      justify-content: between;
+      align-items: center;
+    }
+
+    .achievement-id {
+      font-size: 12px;
+      color: var(--neon-blue);
+      font-weight: 600;
+    }
+
+    .achievement-status {
+      font-size: 10px;
+      color: var(--neon-green);
+      background: rgba(0, 255, 65, 0.1);
+      padding: 2px 8px;
+      border-radius: 10px;
+      border: 1px solid var(--neon-green);
+    }
+
+    .card-image {
+      position: relative;
+      overflow: hidden;
+      height: 200px;
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+      filter: brightness(0.8) contrast(1.2);
+    }
+
+    .achievement-card:hover .card-image img {
+      transform: scale(1.1);
+      filter: brightness(1) contrast(1.3);
+    }
+
+    .image-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(0, 255, 65, 0.1), rgba(0, 212, 255, 0.1));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .achievement-card:hover .image-overlay {
+      opacity: 1;
     }
 
     .card-content {
-      padding: 15px;
-      text-align: center;
-    }
-
-    .card-content h3 {
-      margin: 10px 0 5px;
-      font-size: 1.1rem;
-      color: #f0f0f0;
-    }
-
-    .card-content a {
-      text-decoration: none;
-      color: #00ffe1;
-      font-weight: bold;
-      transition: color 0.2s;
-    }
-
-    .card-content a:hover {
-      color: #0ff;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(30px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    footer {
-      text-align: center;
       padding: 20px;
-      color: #888;
-      font-size: 0.9rem;
+    }
+
+    .achievement-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--neon-green);
+      margin-bottom: 8px;
+      text-shadow: 0 0 10px rgba(0, 255, 65, 0.3);
+    }
+
+    .achievement-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .action-btn {
+      flex: 1;
+      padding: 8px 16px;
+      background: transparent;
+      border: 1px solid var(--neon-green);
+      color: var(--neon-green);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      text-align: center;
+      font-weight: 500;
+    }
+
+    .action-btn:hover {
+      background: var(--neon-green);
+      color: var(--dark-bg);
+      box-shadow: 0 0 20px rgba(0, 255, 65, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .action-btn.primary {
+      background: var(--neon-green);
+      color: var(--dark-bg);
+    }
+
+    .action-btn.primary:hover {
+      background: var(--neon-blue);
+      border-color: var(--neon-blue);
+      box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid var(--glass-border);
+      background: rgba(0, 0, 0, 0.5);
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .footer-text {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .social-link {
+      color: var(--neon-green);
+      text-decoration: none;
+      padding: 8px 16px;
+      border: 1px solid var(--glass-border);
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      font-size: 12px;
+    }
+
+    .social-link:hover {
+      border-color: var(--neon-green);
+      box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+    }
+
+    .copyright {
+      font-size: 12px;
+      color: #444;
+      font-weight: 300;
+    }
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .terminal-header {
+        margin: 10px;
+        padding: 15px;
+      }
+      
+      .section-title {
+        font-size: 2rem;
+      }
+      
+      .achievements-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .main-content {
+        padding: 0 10px;
+      }
+    }
+
+    /* Scrollbar styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--darker-bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--neon-green);
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--neon-blue);
     }
   </style>
 </head>
 <body>
+  <!-- Matrix background -->
+  <div class="matrix-bg" id="matrixBg"></div>
 
-  <h1>Somesh's Hackathon & Quiz Certificates</h1>
-  <p class="subtitle">Explore my achievements through top hackathons and competitions</p>
-
-  <div class="container">
-
-    <!-- Card 1 -->
-    <div class="card">
-      <a href="bmsitcodered.jpg" target="_blank">
-        <img src="bmsitcodered.jpg" alt="BMSIT CodeRed Certificate">
-      </a>
-      <div class="card-content">
-        <h3>BMSIT CodeRed Hackathon</h3>
-        <a href="bmsitcodered.jpg" target="_blank">View Certificate</a>
+  <!-- Terminal Header -->
+  <div class="terminal-header">
+    <div class="terminal-buttons">
+      <div class="terminal-button close"></div>
+      <div class="terminal-button minimize"></div>
+      <div class="terminal-button maximize"></div>
+    </div>
+    
+    <div class="terminal-content">
+      <div class="command-line">
+        <span class="prompt">root@somesh:~$</span>
+        <span>whoami</span>
+        <span class="cursor"></span>
+      </div>
+      
+      <div class="ascii-art">
+ ███████╗ ██████╗ ███╗   ███╗███████╗███████╗██╗  ██╗
+ ██╔════╝██╔═══██╗████╗ ████║██╔════╝██╔════╝██║  ██║
+ ███████╗██║   ██║██╔████╔██║█████╗  ███████╗███████║
+ ╚════██║██║   ██║██║╚██╔╝██║██╔══╝  ╚════██║██╔══██║
+ ███████║╚██████╔╝██║ ╚═╝ ██║███████╗███████║██║  ██║
+ ╚══════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝╚═╝  ╚═╝
+      </div>
+      
+      <div class="status-bar">
+        <div class="status-item">
+          <div class="status-indicator"></div>
+          <span>SYSTEM ONLINE</span>
+        </div>
+        <div class="status-item">
+          <span>ACHIEVEMENTS: 7</span>
+        </div>
+        <div class="status-item">
+          <span>STATUS: ELITE HACKER</span>
+        </div>
       </div>
     </div>
-
-    <!-- Card 2 -->
-    <div class="card">
-      <a href="buildwithindia.jpg" target="_blank">
-        <img src="buildwithindia.jpg" alt="Build with India Certificate">
-      </a>
-      <div class="card-content">
-        <h3>Build with India Hackathon</h3>
-        <a href="buildwithindia.jpg" target="_blank">View Certificate</a>
-      </div>
-    </div>
-
-    <!-- Card 3 -->
-    <div class="card">
-      <a href="ggitshackthon.jpg" target="_blank">
-        <img src="ggitshackthon.jpg" alt="GGITS Hackathon Certificate">
-      </a>
-      <div class="card-content">
-        <h3>GGITS National Hackathon</h3>
-        <a href="ggitshackthon.jpg" target="_blank">View Certificate</a>
-      </div>
-    </div>
-
-    <!-- Card 4 -->
-    <div class="card">
-      <a href="metadome.jpg" target="_blank">
-        <img src="metadome.jpg" alt="Metadome Certificate">
-      </a>
-      <div class="card-content">
-        <h3>Metadome AR/VR Hackathon</h3>
-        <a href="metadome.jpg" target="_blank">View Certificate</a>
-      </div>
-    </div>
-
-    <!-- Card 5 -->
-    <div class="card">
-      <a href="polkadothackthonnft.jpg" target="_blank">
-        <img src="polkadothackthonnft.jpg" alt="Polkadot NFT Hackathon Certificate">
-      </a>
-      <div class="card-content">
-        <h3>Polkadot NFT Hackathon</h3>
-        <a href="polkadothackthonnft.jpg" target="_blank">View Certificate</a>
-      </div>
-    </div>
-
-    <!-- Card 6 -->
-    <div class="card">
-      <a href="samsunghackthon.jpg" target="_blank">
-        <img src="samsunghackthon.jpg" alt="Samsung Hackathon Certificate">
-      </a>
-      <div class="card-content">
-        <h3>Samsung Solve for Tomorrow</h3>
-        <a href="samsunghackthon.jpg" target="_blank">View Certificate</a>
-      </div>
-    </div>
-
-    <!-- Card 7 -->
-    <div class="card">
-      <a href="startupindiaquiz.jpg" target="_blank">
-        <img src="startupindiaquiz.jpg" alt="Startup India Quiz Certificate">
-      </a>
-      <div class="card-content">
-        <h3>Startup India Quiz Champion</h3>
-        <a href="startupindiaquiz.jpg" target="_blank">View Certificate</a>
-      </div>
-    </div>
-
   </div>
 
-  <footer>Somesh.S.Talligeri </footer>
+  <div class="main-content">
+    <!-- Section Header -->
+    <div class="section-header">
+      <h1 class="section-title glitch">ACHIEVEMENT_UNLOCKED.exe</h1>
+      <p class="section-subtitle">// Elite hackathon conquests & coding championships</p>
+    </div>
 
+    <!-- Achievements Grid -->
+    <div class="achievements-grid">
+      
+      <!-- Achievement 1 -->
+      <div class="achievement-card">
+        <div class="card-header">
+          <span class="achievement-id">[CERT_001]</span>
+          <span class="achievement-status">VERIFIED</span>
+        </div>
+        <div class="card-image">
+          <img src="bmsitcodered.jpg" alt="BMSIT CodeRed Certificate">
+          <div class="image-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="achievement-title">BMSIT CodeRed Hackathon</h3>
+          <div class="achievement-meta">
+            <span>TYPE: Competitive Programming</span>
+            <span>RANK: Champion</span>
+          </div>
+          <div class="card-actions">
+            <a href="bmsitcodered.jpg" target="_blank" class="action-btn primary">DECRYPT</a>
+            <a href="bmsitcodered.jpg" target="_blank" class="action-btn">ANALYZE</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievement 2 -->
+      <div class="achievement-card">
+        <div class="card-header">
+          <span class="achievement-id">[CERT_002]</span>
+          <span class="achievement-status">VERIFIED</span>
+        </div>
+        <div class="card-image">
+          <img src="buildwithindia.jpg" alt="Build with India Certificate">
+          <div class="image-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="achievement-title">Build with India Hackathon</h3>
+          <div class="achievement-meta">
+            <span>TYPE: National Competition</span>
+            <span>RANK: Winner</span>
+          </div>
+          <div class="card-actions">
+            <a href="buildwithindia.jpg" target="_blank" class="action-btn primary">DECRYPT</a>
+            <a href="buildwithindia.jpg" target="_blank" class="action-btn">ANALYZE</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievement 3 -->
+      <div class="achievement-card">
+        <div class="card-header">
+          <span class="achievement-id">[CERT_003]</span>
+          <span class="achievement-status">VERIFIED</span>
+        </div>
+        <div class="card-image">
+          <img src="ggitshackthon.jpg" alt="GGITS Hackathon Certificate">
+          <div class="image-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="achievement-title">GGITS National Hackathon</h3>
+          <div class="achievement-meta">
+            <span>TYPE: National Level</span>
+            <span>RANK: Elite</span>
+          </div>
+          <div class="card-actions">
+            <a href="ggitshackthon.jpg" target="_blank" class="action-btn primary">DECRYPT</a>
+            <a href="ggitshackthon.jpg" target="_blank" class="action-btn">ANALYZE</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievement 4 -->
+      <div class="achievement-card">
+        <div class="card-header">
+          <span class="achievement-id">[CERT_004]</span>
+          <span class="achievement-status">VERIFIED</span>
+        </div>
+        <div class="card-image">
+          <img src="metadome.jpg" alt="Metadome Certificate">
+          <div class="image-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="achievement-title">Metadome AR/VR Hackathon</h3>
+          <div class="achievement-meta">
+            <span>TYPE: Extended Reality</span>
+            <span>RANK: Innovator</span>
+          </div>
+          <div class="card-actions">
+            <a href="metadome.jpg" target="_blank" class="action-btn primary">DECRYPT</a>
+            <a href="metadome.jpg" target="_blank" class="action-btn">ANALYZE</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievement 5 -->
+      <div class="achievement-card">
+        <div class="card-header">
+          <span class="achievement-id">[CERT_005]</span>
+          <span class="achievement-status">VERIFIED</span>
+        </div>
+        <div class="card-image">
+          <img src="polkadothackthonnft.jpg" alt="Polkadot NFT Hackathon Certificate">
+          <div class="image-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="achievement-title">Polkadot NFT Hackathon</h3>
+          <div class="achievement-meta">
+            <span>TYPE: Blockchain/Web3</span>
+            <span>RANK: Crypto Pioneer</span>
+          </div>
+          <div class="card-actions">
+            <a href="polkadothackthonnft.jpg" target="_blank" class="action-btn primary">DECRYPT</a>
+            <a href="polkadothackthonnft.jpg" target="_blank" class="action-btn">ANALYZE</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievement 6 -->
+      <div class="achievement-card">
+        <div class="card-header">
+          <span class="achievement-id">[CERT_006]</span>
+          <span class="achievement-status">VERIFIED</span>
+        </div>
+        <div class="card-image">
+          <img src="samsunghackthon.jpg" alt="Samsung Hackathon Certificate">
+          <div class="image-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="achievement-title">Samsung Solve for Tomorrow</h3>
+          <div class="achievement-meta">
+            <span>TYPE: Corporate Challenge</span>
+            <span>RANK: Problem Solver</span>
+          </div>
+          <div class="card-actions">
+            <a href="samsunghackthon.jpg" target="_blank" class="action-btn primary">DECRYPT</a>
+            <a href="samsunghackthon.jpg" target="_blank" class="action-btn">ANALYZE</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievement 7 -->
+      <div class="achievement-card">
+        <div class="card-header">
+          <span class="achievement-id">[CERT_007]</span>
+          <span class="achievement-status">VERIFIED</span>
+        </div>
+        <div class="card-image">
+          <img src="startupindiaquiz.jpg" alt="Startup India Quiz Certificate">
+          <div class="image-overlay"></div>
+        </div>
+        <div class="card-content">
+          <h3 class="achievement-title">Startup India Quiz Champion</h3>
+          <div class="achievement-meta">
+            <span>TYPE: Knowledge Championship</span>
+            <span>RANK: Quiz Master</span>
+          </div>
+          <div class="card-actions">
+            <a href="startupindiaquiz.jpg" target="_blank" class="action-btn primary">DECRYPT</a>
+            <a href="startupindiaquiz.jpg" target="_blank" class="action-btn">ANALYZE</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-content">
+      <p class="footer-text">// Connection established. Displaying elite achievements database...</p>
+      <div class="social-links">
+        <a href="#" class="social-link">GitHub</a>
+        <a href="#" class="social-link">LinkedIn</a>
+        <a href="#" class="social-link">Twitter</a>
+        <a href="#" class="social-link">Portfolio</a>
+      </div>
+      <p class="copyright">© 2025 Somesh.exe | Powered by pure code & caffeine ☕</p>
+    </div>
+  </div>
+
+  <script>
+    // Matrix rain effect
+    function createMatrixRain() {
+      const matrixBg = document.getElementById('matrixBg');
+      const chars = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
+      
+      for (let i = 0; i < 50; i++) {
+        const rain = document.createElement('div');
+        rain.className = 'matrix-rain';
+        rain.textContent = chars[Math.floor(Math.random() * chars.length)];
+        rain.style.left = Math.random() * 100 + '%';
+        rain.style.animationDelay = Math.random() * 20 + 's';
+        rain.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        matrixBg.appendChild(rain);
+      }
+    }
+
+    // Typing animation for terminal
+    function typeCommand() {
+      const commands = [
+        'cat /achievements/elite_hacker.txt',
+        'grep -r "hackathon_winner" /certificates/',
+        'ls -la /skills/programming/',
+        'sudo access_achievement_database'
+      ];
+      
+      let currentCommand = 0;
+      const commandElement = document.querySelector('.command-line span:nth-child(2)');
+      
+      function typeNextCommand() {
+        const command = commands[currentCommand];
+        commandElement.textContent = '';
+        
+        for (let i = 0; i < command.length; i++) {
+          setTimeout(() => {
+            commandElement.textContent += command[i];
+          }, i * 50);
+        }
+        
+        currentCommand = (currentCommand + 1) % commands.length;
+        setTimeout(typeNextCommand, 4000);
+      }
+      
+      typeNextCommand();
+    }
+
+    // Glitch effect on scroll
+    function addGlitchEffect() {
+      const glitchElements = document.querySelectorAll('.glitch');
+      
+      window.addEventListener('scroll', () => {
+        glitchElements.forEach(element => {
+          const rect = element.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            element.style.animation = 'glitch 0.5s ease-in-out';
+            setTimeout(() => {
+              element.style.animation = '';
+            }, 500);
+          }
+        });
+      });
+    }
+
+    // Initialize effects
+    document.addEventListener('DOMContentLoaded', () => {
+      createMatrixRain();
+      setTimeout(typeCommand, 2000);
+      addGlitchEffect();
+    });
+
+    // Achievement card sound effects (visual feedback)
+    document.querySelectorAll('.achievement-card').forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.boxShadow = '0 20px 40px rgba(0, 255, 65, 0.3)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3)';
+      });
+    });
+  </script>
 </body>
 </html>
